@@ -1,47 +1,28 @@
 const BASE_URL = "https://jsonplaceholder.typicode.com";
 
 export async function fetchUsers() {
-  try {
-    const response = await fetch(`${BASE_URL}/users`);
-    return await response.json();
-  } catch (error) {
-    console.error("Erro ao buscar usuários:", error);
-    return [];
-  }
+  const response = await fetch(`${BASE_URL}/users`);
+  return response.json();
 }
 
 export async function fetchPostsByUser(userId) {
-  try {
-    const response = await fetch(`${BASE_URL}/posts?userId=${userId}`);
-    return await response.json();
-  } catch (error) {
-    console.error("Erro ao buscar posts:", error);
-    return [];
-  }
+  const response = await fetch(`${BASE_URL}/posts?userId=${userId}`);
+  return response.json();
 }
 
 export async function fetchCommentsByPost(postId) {
-  try {
-    const response = await fetch(`${BASE_URL}/comments?postId=${postId}`);
-    return await response.json();
-  } catch (error) {
-    console.error("Erro ao buscar comentários:", error);
-    return [];
-  }
+  const response = await fetch(`${BASE_URL}/comments?postId=${postId}`);
+  return response.json();
 }
 
 export async function sendReport(data) {
-  try {
-    const response = await fetch(`${BASE_URL}/reports`, {
-      method: "POST",
-      body: JSON.stringify(data),
-      headers: {
-        "Content-Type": "application/json"
-      }
-    });
+  const response = await fetch(`${BASE_URL}/posts`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(data)
+  });
 
-    return await response.json();
-  } catch (error) {
-    console.error("Erro ao enviar relatório:", error);
-  }
+  return response.json();
 }
